@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MembersViewDlg" widgetVar="MembersViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMembersTitle}">
+            <h:form id="MembersViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{membersController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMembersLabel_memberid}"/>
+                        <h:outputText value="#{membersController.selected.memberid}" title="#{bundle.ViewMembersTitle_memberid}"/>
+                        <h:outputText value="#{bundle.ViewMembersLabel_description}"/>
+                        <h:outputText value="#{membersController.selected.description}" title="#{bundle.ViewMembersTitle_description}"/>
+                        <h:outputText value="#{bundle.ViewMembersLabel_age}"/>
+                        <h:outputText value="#{membersController.selected.age}" title="#{bundle.ViewMembersTitle_age}"/>
+                        <h:outputText value="#{bundle.ViewMembersLabel_sexe}"/>
+                        <h:outputText value="#{membersController.selected.sexe}" title="#{bundle.ViewMembersTitle_sexe}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MembersViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="OutgoingsViewDlg" widgetVar="OutgoingsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewOutgoingsTitle}">
+            <h:form id="OutgoingsViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{outgoingsController.selected != null}">
+                        <h:outputText value="#{bundle.ViewOutgoingsLabel_docid}"/>
+                        <h:outputText value="#{outgoingsController.selected.docid}" title="#{bundle.ViewOutgoingsTitle_docid}"/>
+                        <h:outputText value="#{bundle.ViewOutgoingsLabel_trsdate}"/>
+                        <h:outputText value="#{outgoingsController.selected.trsdate}" title="#{bundle.ViewOutgoingsTitle_trsdate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewOutgoingsLabel_qty}"/>
+                        <h:outputText value="#{outgoingsController.selected.qty}" title="#{bundle.ViewOutgoingsTitle_qty}"/>
+                        <h:outputText value="#{bundle.ViewOutgoingsLabel_total}"/>
+                        <h:outputText value="#{outgoingsController.selected.total}" title="#{bundle.ViewOutgoingsTitle_total}"/>
+                        <h:outputText value="#{bundle.ViewOutgoingsLabel_prdid}"/>
+                        <h:outputText value="#{outgoingsController.selected.prdid}" title="#{bundle.ViewOutgoingsTitle_prdid}"/>
+                        <h:outputText value="#{bundle.ViewOutgoingsLabel_memberid}"/>
+                        <h:outputText value="#{outgoingsController.selected.memberid}" title="#{bundle.ViewOutgoingsTitle_memberid}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="OutgoingsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

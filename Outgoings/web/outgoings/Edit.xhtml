@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="OutgoingsEditDlg" widgetVar="OutgoingsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditOutgoingsTitle}">
+            <h:form id="OutgoingsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{outgoingsController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditOutgoingsLabel_docid}" for="docid" />
+                        <p:inputText id="docid" value="#{outgoingsController.selected.docid}" title="#{bundle.EditOutgoingsTitle_docid}" required="true" requiredMessage="#{bundle.EditOutgoingsRequiredMessage_docid}"/>
+                        <p:outputLabel value="#{bundle.EditOutgoingsLabel_trsdate}" for="trsdate" />
+                        <p:calendar id="trsdate" pattern="MM/dd/yyyy HH:mm:ss" value="#{outgoingsController.selected.trsdate}" title="#{bundle.EditOutgoingsTitle_trsdate}" required="true" requiredMessage="#{bundle.EditOutgoingsRequiredMessage_trsdate}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditOutgoingsLabel_qty}" for="qty" />
+                        <p:inputText id="qty" value="#{outgoingsController.selected.qty}" title="#{bundle.EditOutgoingsTitle_qty}" required="true" requiredMessage="#{bundle.EditOutgoingsRequiredMessage_qty}"/>
+                        <p:outputLabel value="#{bundle.EditOutgoingsLabel_total}" for="total" />
+                        <p:inputText id="total" value="#{outgoingsController.selected.total}" title="#{bundle.EditOutgoingsTitle_total}" required="true" requiredMessage="#{bundle.EditOutgoingsRequiredMessage_total}"/>
+                        <p:outputLabel value="#{bundle.EditOutgoingsLabel_prdid}" for="prdid" />
+                        <p:selectOneMenu id="prdid" value="#{outgoingsController.selected.prdid}" required="true" requiredMessage="#{bundle.EditOutgoingsRequiredMessage_prdid}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{productsController.itemsAvailableSelectOne}"
+                                           var="prdidItem"
+                                           itemValue="#{prdidItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditOutgoingsLabel_memberid}" for="memberid" />
+                        <p:selectOneMenu id="memberid" value="#{outgoingsController.selected.memberid}" required="true" requiredMessage="#{bundle.EditOutgoingsRequiredMessage_memberid}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{membersController.itemsAvailableSelectOne}"
+                                           var="memberidItem"
+                                           itemValue="#{memberidItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{outgoingsController.update}" value="#{bundle.Save}" update="display,:OutgoingsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'OutgoingsEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="OutgoingsEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

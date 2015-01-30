@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MembersEditDlg" widgetVar="MembersEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMembersTitle}">
+            <h:form id="MembersEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{membersController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditMembersLabel_memberid}" for="memberid" />
+                        <p:inputText id="memberid" value="#{membersController.selected.memberid}" title="#{bundle.EditMembersTitle_memberid}" required="true" requiredMessage="#{bundle.EditMembersRequiredMessage_memberid}"/>
+                        <p:outputLabel value="#{bundle.EditMembersLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{membersController.selected.description}" title="#{bundle.EditMembersTitle_description}" />
+                        <p:outputLabel value="#{bundle.EditMembersLabel_age}" for="age" />
+                        <p:inputText id="age" value="#{membersController.selected.age}" title="#{bundle.EditMembersTitle_age}" /> 
+                        <p:outputLabel value="#{bundle.EditMembersLabel_sexe}" for="sexe" />
+                        <p:selectOneMenu id="sexe" value="#{membersController.selected.sexe}" required="true" >
+                            <f:selectItem
+                                itemValue="M"
+                                itemLabel="Male"/>
+                            <f:selectItem
+                                itemValue="F"
+                                itemLabel="Female"/>
+                        </p:selectOneMenu>
+
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{membersController.update}" value="#{bundle.Save}" update="display,:MembersListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MembersEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MembersEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
