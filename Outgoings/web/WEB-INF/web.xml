@@ -19,25 +19,46 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/products/List.xhtml</welcome-file>
+        <welcome-file>faces/initWebApp.jsp</welcome-file>
     </welcome-file-list>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>adminPages</web-resource-name>
+            <url-pattern>/faces/CreatingAdmin.xhtml</url-pattern>
+        </web-resource-collection>
+        <!-- OMIT auth-constraint -->
+    </security-constraint>
     <security-constraint>
         <display-name>adminPages</display-name>
         <web-resource-collection>
             <web-resource-name>adminPages</web-resource-name>
             <description/>
             <url-pattern>*.xhtml</url-pattern>
+                <url-pattern>/faces/groups/*</url-pattern>
+                <url-pattern>/faces/users/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <description/>
             <role-name>admin</role-name>
         </auth-constraint>
     </security-constraint>
+    <security-constraint>
+        <display-name>userPages</display-name>
+        <web-resource-collection>
+            <web-resource-name>userPages</web-resource-name>
+            <description/>
+            <url-pattern>*.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>user</role-name>
+        </auth-constraint>
+    </security-constraint>
     <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>bob</realm-name>
         <form-login-config>
-            <form-login-page>/faces/index.xhtml</form-login-page>
+            <form-login-page>/faces/Login.xhtml</form-login-page>
             <form-error-page>/faces/error.xhtml</form-error-page>
         </form-login-config>
     </login-config>

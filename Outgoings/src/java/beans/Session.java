@@ -100,7 +100,7 @@ public class Session implements Serializable {
  public String logout() {
     HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
     session.invalidate();
-    return "/index?faces-redirect=true"; }
+    return "/Login?faces-redirect=true"; }
 
     public void methodInManagedBean() throws IOException, ClassNotFoundException, SQLException {
         int mmbrexist = 0;
