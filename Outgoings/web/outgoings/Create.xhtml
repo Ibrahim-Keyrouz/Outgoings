@@ -15,10 +15,10 @@
                         <p:outputLabel value="#{bundle.CreateOutgoingsLabel_docid}" for="docid" />
                         <p:inputText id="docid" value="#{outgoingsController.selected.docid}" title="#{bundle.CreateOutgoingsTitle_docid}" required="true" requiredMessage="#{bundle.CreateOutgoingsRequiredMessage_docid}"/>
                         <p:outputLabel value="#{bundle.CreateOutgoingsLabel_trsdate}" for="trsdate" />
-                        <p:calendar id="trsdate" pattern="MM/dd/yyyy HH:mm:ss" value="#{outgoingsController.selected.trsdate}" title="#{bundle.EditOutgoingsTitle_trsdate}" required="true" requiredMessage="#{bundle.EditOutgoingsRequiredMessage_trsdate}" showOn="button"/>
+                        <p:calendar id="trsdate" pattern="dd/MM/yyyy" value="#{outgoingsController.selected.trsdate}" title="#{bundle.EditOutgoingsTitle_trsdate}" required="true" requiredMessage="#{bundle.EditOutgoingsRequiredMessage_trsdate}" showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateOutgoingsLabel_qty}" for="qty" />
                         <p:inputText id="qty" value="#{outgoingsController.selected.qty}" title="#{bundle.CreateOutgoingsTitle_qty}" required="true" requiredMessage="#{bundle.CreateOutgoingsRequiredMessage_qty}"/>
-                        <p:outputLabel value="#{bundle.CreateOutgoingsLabel_total}" for="total" />
+                        <p:outputLabel value="Unit Price:" for="total" />
                         <p:inputText id="total" value="#{outgoingsController.selected.total}" title="#{bundle.CreateOutgoingsTitle_total}" required="true" requiredMessage="#{bundle.CreateOutgoingsRequiredMessage_total}"/>
                         <p:outputLabel value="#{bundle.CreateOutgoingsLabel_prdid}" for="prdid" />
                         <p:selectOneMenu id="prdid" value="#{outgoingsController.selected.prdid}" required="true" requiredMessage="#{bundle.EditOutgoingsRequiredMessage_prdid}">
@@ -27,7 +27,12 @@
                                            itemValue="#{prdidItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateOutgoingsLabel_memberid}" for="memberid" />
-                        <p:inputText id="memberid" value="#{outgoingsController.selected.memberid}" title="#{bundle.CreateOutgoingsTitle_memberid}" required="true" requiredMessage="#{bundle.CreateOutgoingsRequiredMessage_memberid}" />
+                     
+                        <p:selectOneMenu id="memberid" value="#{outgoingsController.selected.memberid}" required="true" requiredMessage="#{bundle.EditOutgoingsRequiredMessage_memberid}">
+                            <f:selectItems value="#{membersController.itemsAvailableSelectOne}"
+                                           var="memberidItem"
+                                           itemValue="#{memberidItem}"/>
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{outgoingsController.create}" value="#{bundle.Save}" update="display,:OutgoingsListForm:datalist,:growl" oncomplete="handleSubmit(args,'OutgoingsCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="OutgoingsCreateDialog.hide()"/>
